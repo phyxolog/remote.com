@@ -97,7 +97,8 @@ Conslusions: it was a nice exercise to practice my Elixir/Phoenix/Ecto skills. I
 
 ### Schema
 
-```mermaiderDiagram
+```mermaid
+erDiagram
     users }o--|{ salaries : salaries
     users {
         bigserial id
