@@ -92,6 +92,8 @@ Regarding inviting users, I've decided to do asynchrounous processing via Oban j
 
 I've also covered the code by tests, but only for API endpoints happy path and `Accounts` context. Missed to cover `InviteUsers` worker.
 
+Also I've aded some unnecessary (for this test-task scope) things like changesets and validations.
+
 Conslusions: it was a nice exercise to practice my Elixir/Phoenix/Ecto skills. I tried to avoid using too many libraries to show my ability to work with the language and its built-in tools. I've also tried to keep the code clean, well organized and documented. Of course, there are some improvements that could be done, but I think it's a good result in terms of the test task.
 
 
