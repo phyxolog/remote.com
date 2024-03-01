@@ -25,3 +25,6 @@ config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Configure Oban for testing
+config :be_exercise, Oban, testing: :manual

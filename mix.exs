@@ -45,7 +45,12 @@ defmodule BeExercise.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:be_challengex, github: "remotecom/be_challengex", tag: "0.0.1"}
+      {:decimal, "~> 2.1"},
+      {:oban, "~> 2.17"},
+      {:scrivener_ecto, "~> 2.0"},
+      {:be_challengex, github: "remotecom/be_challengex", tag: "0.0.1"},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.1", only: [:dev], runtime: false}
     ]
   end
 

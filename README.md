@@ -84,4 +84,58 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## Implementation details
 
-This section is for you to fill in with any decisions you made that may be relevant. You can also change this README to fit your needs.
+I've added pagination to the `/users` endpoint via `scrivener` library. This way, we can avoid returning a huge amount of data in a single request.
+
+Also I didn't use any library for filtering and ordering. Instead of that, I've used Ecto's built-in functions to achieve the same result. In context of real applications I would moving forward with a library like `Flop` to handle complex pagination and filtering.
+
+Regarding inviting users, I've decided to do asynchrounous processing via Oban jobs. This way, we can ensure that the request will return quickly and the email sending will be handled in the background.
+
+I've also covered the code by tests, but only for API endpoints happy path and `Accounts` context. Missed to cover `InviteUsers` worker.
+
+Conslusions: it was a nice exercise to practice my Elixir/Phoenix/Ecto skills. I tried to avoid using too many libraries to show my ability to work with the language and its built-in tools. I've also tried to keep the code clean, well organized and documented. Of course, there are some improvements that could be done, but I think it's a good result in terms of the test task.
+
+
+### Schema
+
+```mermaiderDiagram
+    users }o--|{ salaries : salaries
+    users {
+        bigserial id
+        string name
+    }
+    salaries {
+        bigserial id
+        decimal amount
+        string currency
+        boolean active
+        datetime last_active_at
+        reference(users) user_id
+    }
+```
+
+### API
+
+#### GET /users
+
+**Parameters**
+
+| Name       | Required | Type            |
+|------------|----------|-----------------|
+| name       | optional | string          |
+| order_by[] | optional | array of string |
+
+**Example**
+
+```
+curl --location --globoff 'http://localhost:4000/users?name=Tom&order_by[]=name.asc'
+```
+
+#### POST /invite-users
+
+**No Parameters**
+
+**Example**
+
+```
+curl --location --request POST 'http://localhost:4000/invite-users'
+```

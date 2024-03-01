@@ -7,6 +7,12 @@
 # General application configuration
 import Config
 
+config :be_exercise, Oban,
+  repo: BeExercise.Repo,
+  queues: [default: 10]
+
+config :be_exercise, BeExercise.Repo, migration_timestamps: [type: :utc_datetime_usec]
+
 config :be_exercise,
   ecto_repos: [BeExercise.Repo]
 
@@ -23,7 +29,7 @@ config :be_exercise, BeExerciseWeb.Endpoint,
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: [:request_id, :mfa]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

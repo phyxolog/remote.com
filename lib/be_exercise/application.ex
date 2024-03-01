@@ -15,9 +15,9 @@ defmodule BeExercise.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: BeExercise.PubSub},
       # Start the Endpoint (http/https)
-      BeExerciseWeb.Endpoint
-      # Start a worker by calling: BeExercise.Worker.start_link(arg)
-      # {BeExercise.Worker, arg}
+      BeExerciseWeb.Endpoint,
+      # Start the Oban supervisor
+      {Oban, Application.fetch_env!(:be_exercise, Oban)}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
